@@ -1,22 +1,25 @@
 import { useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
 
 function App() {
-  const [page, setPage] = useState("Home");
+  const [obj, setObj] = useState({
+    label: "ime",
+    value: "Ivana",
+  });
 
-  const pageHandler = () => {
-    if (page === "Home") {
-      setPage("About");
-    } else {
-      setPage("Home");
-    }
+  const overHandler = () => {
+    setObj({ label: "prezime", value: "Runje" });
   };
+
+  const outHandler = () => {
+    setObj({ label: "ime", value: "Ivana" });
+  };
+
   return (
     <div className="App">
-      <Header pageHandler={pageHandler} />
-      <Main page={page} />
+      <h1 onMouseOver={overHandler} onMouseOut={outHandler}>
+        {obj.label}: {obj.value}
+      </h1>
     </div>
   );
 }
